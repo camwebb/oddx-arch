@@ -24,6 +24,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://openddx.net/onto/oddx.rdf">
+        <owl:versionInfo>0.1</owl:versionInfo>
         <rdfs:comment>Development version at: https://github.com/openddx/oddx-ontology</rdfs:comment>
         <rdfs:comment>An ontology for connecting diseases with symptoms, via statements in documents or obsetrvations in patients</rdfs:comment>
     </owl:Ontology>
@@ -239,16 +240,16 @@
     
 
 
-    <!-- http://openddx.net/onto/oddx.rdf#DRS0 -->
+    <!-- http://openddx.net/onto/oddx.rdf#DSR0 -->
 
-    <owl:NamedIndividual rdf:about="http://openddx.net/onto/oddx.rdf#DRS0">
+    <owl:NamedIndividual rdf:about="http://openddx.net/onto/oddx.rdf#DSR0">
         <rdf:type rdf:resource="http://openddx.net/onto/oddx.rdf#DiseaseSymptomRecord"/>
-        <rdfs:comment>An example instance to demonstrate usage</rdfs:comment>
-        <datePresent>2011-01-01</datePresent>
-        <population>West Kalimantan, Indonesia, mixed ethnic</population>
-        <estProbOfDisease>0.2</estProbOfDisease>
-        <terms:created>2012-03-14</terms:created>
         <estProbOfSymptom>0.3</estProbOfSymptom>
+        <terms:created>2012-03-14</terms:created>
+        <population>West Kalimantan, Indonesia, mixed ethnic</population>
+        <datePresent>2011-01-01</datePresent>
+        <estProbOfDisease>0.2</estProbOfDisease>
+        <rdfs:comment>An example instance to demonstrate usage</rdfs:comment>
         <reference rdf:resource="http://openddx.net/onto/oddx.rdf#Article0"/>
         <disease rdf:resource="http://openddx.net/onto/oddx.rdf#Disease1"/>
         <terms:creator rdf:resource="http://openddx.net/onto/oddx.rdf#Doctor0"/>
