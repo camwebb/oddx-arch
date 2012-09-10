@@ -332,6 +332,7 @@
         <terms:creator rdf:resource="http://openddx.net/onto/oddx.rdf#Doctor0"/>
         <inPatient rdf:resource="http://openddx.net/onto/oddx.rdf#Patient0"/>
         <symptom rdf:resource="http://openddx.net/onto/oddx.rdf#Symptom1"/>
+        <symptom rdf:resource="http://openddx.net/onto/oddx.rdf#Symptom2"/>
     </owl:NamedIndividual>
     
 
@@ -340,6 +341,7 @@
 
     <owl:NamedIndividual rdf:about="http://openddx.net/onto/oddx.rdf#Disease1">
         <rdf:type rdf:resource="&obo;DOID_4"/>
+        <hasFinding rdf:resource="http://openddx.net/onto/oddx.rdf#Symptom1"/>
     </owl:NamedIndividual>
     
 
@@ -365,6 +367,14 @@
     <!-- http://openddx.net/onto/oddx.rdf#Symptom1 -->
 
     <owl:NamedIndividual rdf:about="http://openddx.net/onto/oddx.rdf#Symptom1">
+        <rdf:type rdf:resource="&obo;SYMP_0000462"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://openddx.net/onto/oddx.rdf#Symptom2 -->
+
+    <owl:NamedIndividual rdf:about="http://openddx.net/onto/oddx.rdf#Symptom2">
         <rdf:type rdf:resource="&obo;SYMP_0000462"/>
     </owl:NamedIndividual>
 </rdf:RDF>
