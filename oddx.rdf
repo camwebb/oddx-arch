@@ -24,7 +24,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://openddx.net/onto/oddx.rdf">
-        <owl:versionInfo>0.1</owl:versionInfo>
+        <owl:versionInfo>base 0.1, under development</owl:versionInfo>
         <rdfs:comment>Development version at: https://github.com/openddx/oddx-ontology</rdfs:comment>
         <rdfs:comment>An ontology for connecting diseases with symptoms, via statements in documents or obsetrvations in patients</rdfs:comment>
     </owl:Ontology>
@@ -84,6 +84,17 @@
     
 
 
+    <!-- http://openddx.net/onto/oddx.rdf#hasFinding -->
+
+    <owl:ObjectProperty rdf:about="http://openddx.net/onto/oddx.rdf#hasFinding">
+        <rdfs:comment>The simplest association of a disease with a finding (= symptom sensu lato)</rdfs:comment>
+        <rdfs:domain rdf:resource="http://openddx.net/onto/oddx.rdf#Disease"/>
+        <rdfs:range rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
+        <owl:inverseOf rdf:resource="http://openddx.net/onto/oddx.rdf#isFindingOf"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://openddx.net/onto/oddx.rdf#hasSymptomRecord -->
 
     <owl:ObjectProperty rdf:about="http://openddx.net/onto/oddx.rdf#hasSymptomRecord">
@@ -102,6 +113,16 @@
     
 
 
+    <!-- http://openddx.net/onto/oddx.rdf#isFindingOf -->
+
+    <owl:ObjectProperty rdf:about="http://openddx.net/onto/oddx.rdf#isFindingOf">
+        <rdfs:comment>The simplest association of a disease with a finding (= symptom sensu lato)</rdfs:comment>
+        <rdfs:range rdf:resource="http://openddx.net/onto/oddx.rdf#Disease"/>
+        <rdfs:domain rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://openddx.net/onto/oddx.rdf#reference -->
 
     <owl:ObjectProperty rdf:about="http://openddx.net/onto/oddx.rdf#reference">
@@ -115,7 +136,7 @@
 
     <owl:ObjectProperty rdf:about="http://openddx.net/onto/oddx.rdf#symptom">
         <rdfs:domain rdf:resource="http://openddx.net/onto/oddx.rdf#DiseaseSymptomRecord"/>
-        <rdfs:range rdf:resource="&obo;SYMP_0000462"/>
+        <rdfs:range rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
     </owl:ObjectProperty>
     
 
@@ -178,6 +199,12 @@
     
 
 
+    <!-- http://xmlns.com/foaf/0.1/age -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;age"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -189,10 +216,58 @@
     
 
 
+    <!-- http://openddx.net/onto/oddx.rdf#DiagnosticTest -->
+
+    <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#DiagnosticTest">
+        <rdfs:subClassOf rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openddx.net/onto/oddx.rdf#Disease -->
+
+    <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#Disease">
+        <owl:equivalentClass rdf:resource="&obo;DOID_4"/>
+    </owl:Class>
+    
+
+
     <!-- http://openddx.net/onto/oddx.rdf#DiseaseSymptomRecord -->
 
     <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#DiseaseSymptomRecord">
-        <rdfs:comment>The core record associating a disease with a symptom</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://openddx.net/onto/oddx.rdf#hasDiseaseRecord"/>
+                <owl:onClass rdf:resource="http://openddx.net/onto/oddx.rdf#Disease"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The core record/datum/observation associating a disease with a symptom. Can be either an observation of a single disease in a patient, or an association of a symptom with a disease from a publication.  Should only have a single associated disease, but may have multiple associated symptoms.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://openddx.net/onto/oddx.rdf#Finding -->
+
+    <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#Finding">
+        <rdfs:comment>The general class of findings about a disease in a patient, may include lab tests, symptoms (sensu stricto), signs (sensu stricto).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://openddx.net/onto/oddx.rdf#Sign -->
+
+    <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#Sign">
+        <rdfs:subClassOf rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openddx.net/onto/oddx.rdf#Symptom -->
+
+    <owl:Class rdf:about="http://openddx.net/onto/oddx.rdf#Symptom">
+        <owl:equivalentClass rdf:resource="&obo;SYMP_0000462"/>
+        <rdfs:subClassOf rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
     </owl:Class>
     
 
@@ -205,7 +280,9 @@
 
     <!-- http://purl.obolibrary.org/obo/SYMP_0000462 -->
 
-    <owl:Class rdf:about="&obo;SYMP_0000462"/>
+    <owl:Class rdf:about="&obo;SYMP_0000462">
+        <rdfs:subClassOf rdf:resource="http://openddx.net/onto/oddx.rdf#Finding"/>
+    </owl:Class>
     
 
 
@@ -279,6 +356,8 @@
 
     <foaf:Person rdf:about="http://openddx.net/onto/oddx.rdf#Patient0">
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <foaf:age>23</foaf:age>
+        <population>location=West Kalimantan, ethnicity=Melayu</population>
     </foaf:Person>
     
 
