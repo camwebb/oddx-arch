@@ -9,7 +9,7 @@ Getting Started
 ===========
 We're looking for contributors in a wide range of skills.
 
-- Know OWL? Fork this repository and check out our ontology
+- Know OWL? Fork our ontology repository and get modelling - https://github.com/openddx/oddx-onto
 - Got data? Drop us a line on the mailing list to tell us about your data set
 - Want to build on the data? Join us on the mailing list to be part of the discussion and get hacking.
 
